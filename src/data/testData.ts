@@ -13,5 +13,11 @@ export const validUser: Record<string, UserCredential> ={
     standardUser:{
         email:'tandileskenjana@gmail.com',
         password: 'Tandile#2000'
+    },
+
+    instructorUser:{
+        email:'instructor@agmail.com',
+        password: '@12345678'
     }
+
 }
