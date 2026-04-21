@@ -13,4 +13,21 @@ export class LoginPage extends BasePage {
     get openLoginPage():Locator{
         return this.page.getByRole('button',{name: 'Login'})
     }
+
+    get emailInput():Locator{
+        return this.page.getByPlaceholder('Email');
+    }
+
+   // get passwordInput():Locator{
+      //  return this.page.getByRole('textbox',{name:'Password'})
+    //}
+
+    async goto(){
+        await this.navigateTo(this.pageUrl);
+    }
+
+    async clickLoginButton(){
+        await this.clickElement(this.openLoginPage);
+    }
+
 }
