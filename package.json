@@ -1,0 +1,23 @@
+{
+  "name": "standileplaywright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TandileSkenjana/STandileplaywright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TandileSkenjana/STandileplaywright/issues"
+  },
+  "homepage": "https://github.com/TandileSkenjana/STandileplaywright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}
