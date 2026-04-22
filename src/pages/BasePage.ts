@@ -18,10 +18,10 @@ export class  BasePage {
         await locator.click();
     }
 
-    async fillInput(locator:Locator,text:string){
-        console.log(`Entering text: "${text}" into element: ${locator}`);
-        await locator.fill(text);
-    }
+    // async fillInput(locator:Locator,text:string){
+    //     console.log(`Entering text: "${text}" into element: ${locator}`);
+    //     await locator.fill(text);
+    // }
 
     async enterText(locator:Locator,text:string){
         console.log(`Entering text: "${text}" into element: ${locator}`);

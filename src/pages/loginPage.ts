@@ -14,6 +14,10 @@ export class LoginPage extends BasePage {
         return this.page.getByRole('button',{name: 'Login'})
     }
 
+    get loginButton():Locator{
+        return this.page.getByRole('button',{name: 'Login'})
+    }
+
     get emailInput():Locator{
         return this.page.getByPlaceholder('Email');
     }
@@ -30,4 +34,4 @@ export class LoginPage extends BasePage {
         await this.clickElement(this.openLoginPage);
     }
 
-}
+     async 
