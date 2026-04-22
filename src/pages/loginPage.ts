@@ -18,9 +18,9 @@ export class LoginPage extends BasePage {
         return this.page.getByPlaceholder('Email');
     }
 
-   // get passwordInput():Locator{
-      //  return this.page.getByRole('textbox',{name:'Password'})
-    //}
+   get passwordInput():Locator{
+       return this.page.getByRole('textbox',{name:'Password'})
+    }
 
     async goto(){
         await this.navigateTo(this.pageUrl);

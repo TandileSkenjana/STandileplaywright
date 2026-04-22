@@ -8,6 +8,8 @@ test.describe('Login to Ndosi Website', () => {
         await loginPage.goto();
         await loginPage.clickLoginButton();
         await loginPage.emailInput.fill(validUser.admin.email);
+
+    
     })
 
     // test('should not login with invalid credentials', async ({ loginPage }) => {
