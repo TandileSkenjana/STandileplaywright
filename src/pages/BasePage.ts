@@ -9,7 +9,7 @@ export class  BasePage {
     }
 
     async navigateTo(url:string){
-        console
+        console.log(`Navigating to URL: ${url}`);
         await this.page.goto(url);
     }
 
@@ -25,7 +25,7 @@ export class  BasePage {
 
     async enterText(locator:Locator,text:string){
         console.log(`Entering text: "${text}" into element: ${locator}`);
-        await locator.type(text);
+        await locator.fill(text);
     }
 
     async verifyElementVisible(locator:Locator){
