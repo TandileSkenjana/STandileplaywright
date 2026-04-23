@@ -18,6 +18,11 @@
   "homepage": "https://github.com/TandileSkenjana/STandileplaywright#readme",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
+    "@types/dotenv": "^6.1.1",
     "@types/node": "^25.6.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mysql2": "^3.22.2"
   }
 }

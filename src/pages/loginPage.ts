@@ -23,7 +23,7 @@ export class LoginPage extends BasePage {
     }
 
    get passwordInput():Locator{
-       return this.page.getByRole('textbox',{name:'Password'})
+       return this.page.getByPlaceholder('Password');
     }
 
     async goto(){
@@ -34,4 +34,12 @@ export class LoginPage extends BasePage {
         await this.clickElement(this.openLoginPage);
     }
 
-     async 
+    async login(email: string, password: string){
+        await this.enterText(this.emailInput, email);
+        await this.enterText(this.passwordInput, password);
+        await this.clickElement(this.loginButton);
+        await this.page.pause();
+    }
+}
+
+  
