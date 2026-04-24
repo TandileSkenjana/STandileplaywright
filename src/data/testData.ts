@@ -1,6 +1,7 @@
 export interface UserCredential{
     email: string;
     password:string;
+    courseName?: string;
 
 }
 
@@ -18,6 +19,15 @@ export const validUser: Record<string, UserCredential> ={
     instructorUser:{
         email:'instructor@agmail.com',
         password: '@12345678'
+    },
+
+    student:{
+        email:'tandile@gmail.com',
+        password: 'T12345678'
     }
 
 }
+
+export const courseData = {
+    courseName: 'Playwright Automation'
+    }
