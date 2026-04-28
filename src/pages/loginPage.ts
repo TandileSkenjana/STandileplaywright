@@ -37,13 +37,11 @@ export class LoginPage extends BasePage {
 
 
  get openLoginModalButton(): Locator {
-    return this.page.getByRole('button', { name: 'Login', exact: true });
+    return this.page.locator('button.user-pill');
   }
 
   get submitLoginButton(): Locator {
-    return this.page
-      .locator('form')
-      .getByRole('button', { name: 'Login' });
+    return this.page.locator('#login-submit');
   }
 
   get emailInput(): Locator {
@@ -51,7 +49,7 @@ export class LoginPage extends BasePage {
   }
 
   get passwordInput(): Locator {
-    return this.page.getByPlaceholder('Password');
+    return this.page.locator('#login-password');
   }
 
   async goto() {
@@ -59,14 +57,26 @@ export class LoginPage extends BasePage {
   }
 
   async openLogin() {
+   // await this.clickElement(this.openLoginModalButton);
+    await this.openLoginModalButton.waitFor({ state: 'visible' });
     await this.clickElement(this.openLoginModalButton);
+    await this.emailInput.waitFor({ state: 'visible' });
+
   }
 
   
 async login(email: string, password: string) {
     await this.enterText(this.emailInput, email);
     await this.enterText(this.passwordInput, password);
-    await this.clickElement(this.submitLoginButton);
+
+    await this.page.waitForTimeout(3000)
+    
+   await Promise.all([
+    this.page.waitForLoadState('networkidle'),
+    this.clickElement(this.submitLoginButton),
+  ]);
+
+
   }
 
 

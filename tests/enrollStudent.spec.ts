@@ -1,11 +1,12 @@
 import { test, expect } from '../src/fixture/customFixture';
 import { validUser, courseData } from '../src/data/testData';
+import { DashboardPage } from '../src/pages/DashboardPage';
 
 test.describe('Admin enrolls student, student verifies enrollment', () => {
 
   test('Enroll student to course and validate as student', async ({
     loginPage,
-    homePage,
+    dashboardPage,
     adminPage,
     enrollmentPage,
     studentCoursesPage,
@@ -14,9 +15,11 @@ test.describe('Admin enrolls student, student verifies enrollment', () => {
 
     // Login as Admin
     await loginPage.goto();
+    await page.waitForTimeout(3000)
     await loginPage.openLogin();
+    await page.waitForTimeout(3000)
     await loginPage.login(validUser.admin.email, validUser.admin.password);
-    await homePage.verifyHomePageIsDisplayed();
+    await DashboardPage.prototype.verifyDashboardIsDisplayed.call({ page });
 
     //  Navigate to Admin Panel → Enrollments
     await adminPage.goToAdminPanel();
