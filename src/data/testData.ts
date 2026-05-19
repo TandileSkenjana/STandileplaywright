@@ -22,12 +22,12 @@ export const validUser: Record<string, UserCredential> ={
     },
 
     student:{
-        email:'tandile@gmail.com',
-        password: 'T12345678'
+        email:'Carrol Keeling',
+        password: '@12345678'
     }
 
 }
 
 export const courseData = {
-    courseName: 'Playwright Automation'
+    courseName: 'Test 12354'
     }

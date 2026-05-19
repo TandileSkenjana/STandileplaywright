@@ -1,6 +1,5 @@
 import { test, expect } from '../src/fixture/customFixture';
 import { validUser, courseData } from '../src/data/testData';
-import { DashboardPage } from '../src/pages/DashboardPage';
 
 test.describe('Admin enrolls student, student verifies enrollment', () => {
 
@@ -15,11 +14,10 @@ test.describe('Admin enrolls student, student verifies enrollment', () => {
 
     // Login as Admin
     await loginPage.goto();
-    await page.waitForTimeout(3000)
     await loginPage.openLogin();
-    await page.waitForTimeout(3000)
     await loginPage.login(validUser.admin.email, validUser.admin.password);
-    await DashboardPage.prototype.verifyDashboardIsDisplayed.call({ page });
+
+    await dashboardPage.verifyDashboardIsDisplayed();
 
     //  Navigate to Admin Panel → Enrollments
     await adminPage.goToAdminPanel();
@@ -27,12 +25,21 @@ test.describe('Admin enrolls student, student verifies enrollment', () => {
 
     // Enroll student
     await enrollmentPage.enrollIndividualStudent(
-      courseData.courseName,
-      validUser.student.email
+      // "Test 12345",
+      //"laeza Kotz"
+       courseData.courseName,
+       validUser.student.email
     );
 
     //  Logout
-    await page.getByRole('button', { name: 'Logout' }).click();
+    await page.getByRole('button', { name: '← Back to Website' }).click();
+     await adminPage.goToAdminPanel();
+   await page.locator('span').filter({ hasText: 'Logout' }).first().click();
+    await page.getByRole('button', { name: /logout/i }).click();
+
+    // await loginPage.openLoginModalButton.waitFor();
+    // await expect(enrollmentPage.successToast).toBeVisible();
+
 
     //  Login as Student
     await loginPage.goto();
@@ -41,6 +48,8 @@ test.describe('Admin enrolls student, student verifies enrollment', () => {
       validUser.student.email,
       validUser.student.password
     );
+
+    
 
     //  Validate enrollment
     await studentCoursesPage.verifyCourseIsEnrolled(

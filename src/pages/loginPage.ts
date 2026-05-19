@@ -5,37 +5,6 @@ export class LoginPage extends BasePage {
 
     private readonly pageUrl:string = "https://ndosisimplifiedautomation.vercel.app/#";
 
-   // private loginButton:Locator;
-   // private emailInput:Locator;
-   // private passwordInput:Locator; 
-
-
-//     get openLoginPage():Locator{
-//         return this.page.getByRole('button',{name: 'Login'})
-//     }
-
-//     get loginButton():Locator{
-//         return this.page.getByRole('button',{name: 'Login'})
-//     }
-
-//     get emailInput():Locator{
-//         return this.page.getByPlaceholder('Email');
-//     }
-
-//    get passwordInput():Locator{
-//        return this.page.getByPlaceholder('Password');
-//     }
-
-//     async goto(){
-//         await this.navigateTo(this.pageUrl);
-//     }
-
-//     async clickLoginButton(){
-//         await this.clickElement(this.openLoginPage);
-//     }
-
-
-
  get openLoginModalButton(): Locator {
     return this.page.locator('button.user-pill');
   }
@@ -64,17 +33,15 @@ export class LoginPage extends BasePage {
 
   }
 
-  
-async login(email: string, password: string) {
-    await this.enterText(this.emailInput, email);
-    await this.enterText(this.passwordInput, password);
+ async login(email: string, password: string) {
+  await this.enterText(this.emailInput, email);
+  await this.enterText(this.passwordInput, password);
 
-    await this.page.waitForTimeout(3000)
-    
-   await Promise.all([
-    this.page.waitForLoadState('networkidle'),
-    this.clickElement(this.submitLoginButton),
-  ]);
+  await this.clickElement(this.submitLoginButton);
+
+  // Wait for something that proves login succeeded
+  await this.page.waitForSelector('text=Welcome back', { timeout: 10000 });
+}
 
 
   }
@@ -87,6 +54,4 @@ async login(email: string, password: string) {
     //     await this.clickElement(this.loginButton);
     //     //await this.page.pause();
     // }
-}
-
   

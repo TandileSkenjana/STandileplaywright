@@ -18,23 +18,15 @@ export class  BasePage {
         await locator.click();
     }
 
-    // async fillInput(locator:Locator,text:string){
-    //     console.log(`Entering text: "${text}" into element: ${locator}`);
-    //     await locator.fill(text);
-    // }
-
-    // async enterText(locator:Locator,text:string){
-    //     console.log(`Entering text: "${text}" into element: ${locator}`);
-    //     await locator.fill(text);
-    // }
-
-    
 async enterText(locator: Locator, text: string) {
   console.log(`Entering text into element`);
 
   // Make sure element is ready for interaction
+
   await locator.waitFor({ state: 'visible' });
-  await locator.waitFor({ state: 'attached' });
+  await locator.fill('');
+  await locator.fill(text);
+  await expect(locator).toHaveValue(text);
 
   // Clear first (important for React controlled inputs)
   await locator.fill('');
@@ -55,3 +47,14 @@ async enterText(locator: Locator, text: string) {
 
     
 }
+
+
+  // async fillInput(locator:Locator,text:string){
+    //     console.log(`Entering text: "${text}" into element: ${locator}`);
+    //     await locator.fill(text);
+    // }
+
+    // async enterText(locator:Locator,text:string){
+    //     console.log(`Entering text: "${text}" into element: ${locator}`);
+    //     await locator.fill(text);
+    // }

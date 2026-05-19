@@ -1,26 +1,27 @@
 import { test } from '../src/fixture/customFixture';
 import { expect } from '@playwright/test';
 import { validUser } from '../src/data/testData';
-import { DashboardPage } from '../src/pages/DashboardPage';
+//import { dashboardPage } from '../src/pages/dashboardPage';
 //import { closePool, getLoginById } from '../src/data/dbnLogin';
 
 
 test.describe('Login to Ndosi Website', () => {
 
-    test('should login with valid credentials', async ({ loginPage, page }) => {  
+    test('should login with valid credentials', async ({ loginPage, dashboardPage, page }) => {  
         await loginPage.goto();
         await loginPage.openLogin();
-        await loginPage.emailInput.fill(validUser.admin.email);
-        await DashboardPage.prototype.verifyDashboardIsDisplayed.call({ page });
+        await loginPage.login(validUser.admin.email, validUser.admin.password);
+        await dashboardPage.verifyDashboardIsDisplayed();
+        
        // await homePage.verifyHomePage.waitFor({ state: 'visible' });
     })
 
     test.describe('Verify login success', () => {
-    test('should login with valid credentials', async ({ loginPage,dashboardPage}) => {
+    test('should login with valid credentials', async ({ loginPage,dashboardPage, page}) => {
         await loginPage.goto();
         await loginPage.openLogin();
         await loginPage.login(validUser.admin.email, validUser.admin.password);
-        await DashboardPage.prototype.verifyDashboardIsDisplayed.call({ page: dashboardPage });
+        await dashboardPage.verifyDashboardIsDisplayed();
         
     })
 })
