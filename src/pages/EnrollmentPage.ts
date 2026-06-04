@@ -22,9 +22,12 @@ get submitEnrollButton(): Locator {
     return this.enrollModal.getByRole('button', { name: '← Back to Website' });
   }
 
-get AdminPanelButton(): Locator {
+get userMenuButton(): Locator {
+   return this.page.locator('button').filter({
+      hasText: 'Nkosi'
+    });
   //return this.page.getByRole('heading', { name: 'Admin Dashboard' });
-  return this.userMenuDropdown.locator('span:has-text("Admin Panel")');
+ // return this.userMenuDropdown.locator('span:has-text("Admin Panel")');
 }
 
 get logoutButton(): Locator {
@@ -57,9 +60,12 @@ get logoutButton(): Locator {
   /* ========= SUCCESS MESSAGE ========= */
 
   get successToast(): Locator {
-  return this.page.locator('[role="status"], .toast').filter({
-    hasText: /enrolled/i
-  });
+    return this.page.getByText(
+      'User enrolled successfully!'
+    );
+  // return this.page.locator('[role="status"], .toast').filter({
+  //   hasText: /enrolled/i
+ // });
 }
 
   /* ========= WORKFLOWS ========= */
@@ -101,16 +107,36 @@ get logoutButton(): Locator {
   await this.submitEnrollButton.waitFor({ state: 'visible' });
 
   await this.clickElement(this.submitEnrollButton);
-  await this.clickElement(this.backtoWebsiteButton);}
+
+   // await this.successToast.waitFor({ state: 'visible', timeout: 10000 });
+  await this.clickElement(this.backtoWebsiteButton);
+
+   await this.page.waitForLoadState('networkidle');
+
+}
 
   //await this.clickElement(this.AdminPanelButton);
- async adminPanelButton(){
+ async logout(){
 
-   await this.clickElement(this.userMenuDropdown);
-     await this.userMenuDropdown.waitFor({ state: 'visible' });
+   await this.userMenuButton.waitFor({state: 'visible' });
+
+     await this.userMenuButton.click();
+
+       // wait for logout option
+    await this.logoutButton.waitFor({
+      state: 'visible'
+    });
+
+    // click logout
+    await this.logoutButton.click();
+  }
+
+
+  //  await this.clickElement(this.userMenuDropdown);
+  //    await this.userMenuDropdown.waitFor({ state: 'visible' });
   
-     await this.AdminPanelButton.waitFor({ state: 'visible' });
-  await this.clickElement(this.logoutButton);}
+  //    await this.AdminPanelButton.waitFor({ state: 'visible' });
+  // await this.clickElement(this.logoutButton);}
   // userMenuButton(userMenuButton: any) {
   
   //   throw new Error("Method not implemented.");

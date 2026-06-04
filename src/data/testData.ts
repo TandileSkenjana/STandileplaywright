@@ -22,7 +22,7 @@ export const validUser: Record<string, UserCredential> ={
     },
 
     student:{
-        email:'Carrol Keeling',
+        email:'Benny Dickens',
         password: '@12345678'
     }
 
